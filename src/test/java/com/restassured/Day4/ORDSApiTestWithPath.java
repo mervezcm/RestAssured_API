@@ -1,6 +1,7 @@
 package com.restassured.Day4;
 
-import com.cydeo.utilities.*;
+
+import com.restassured.utilities.HRTestBase;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
@@ -16,14 +17,14 @@ public class ORDSApiTestWithPath extends HRTestBase {
 
     @DisplayName("GET request to countries with Path method")
     @Test
-    public void test1(){
+    public void test1() {
 
-        Response response= given().accept(ContentType.JSON)
-                        .queryParam("q","{\"region_id\":2}")
+        Response response = given().accept(ContentType.JSON)
+                .queryParam("q", "{\"region_id\":2}")
                 .when()
-                     .get("/countries");
+                .get("/countries");
 
-        assertEquals(200,response.statusCode());
+        assertEquals(200, response.statusCode());
 
         //print limit result
         System.out.println("response.path(\"limit\") = " + response.path("limit"));
@@ -52,7 +53,7 @@ public class ORDSApiTestWithPath extends HRTestBase {
 
         for (Integer regionsID : allRegionsIDs) {
             System.out.println("regionsID = " + regionsID);
-            assertEquals(2,regionsID);
+            assertEquals(2, regionsID);
         }
 
 
@@ -60,21 +61,21 @@ public class ORDSApiTestWithPath extends HRTestBase {
 
     @DisplayName("GET request to /employees with Query Param")
     @Test
-    public void test2(){
-        Response response= given().accept(ContentType.JSON)
-                .and().queryParam("q","{\"job_id\": \"IT_PROG\"}")
+    public void test2() {
+        Response response = given().accept(ContentType.JSON)
+                .and().queryParam("q", "{\"job_id\": \"IT_PROG\"}")
                 .when().get("/employees");
 
-        assertEquals(200,response.statusCode());
-        assertEquals("application/json",response.header("Content-Type"));
+        assertEquals(200, response.statusCode());
+        assertEquals("application/json", response.header("Content-Type"));
         assertTrue(response.body().asString().contains("IT_PROG"));
 
-         //make sure we have only IT_PROG as a job_id
+        //make sure we have only IT_PROG as a job_id
         List<String> allJobIDs = response.path("items.job_id");
 
         for (String jobID : allJobIDs) {
             System.out.println("jobID = " + jobID);
-            assertEquals("IT_PROG",jobID);
+            assertEquals("IT_PROG", jobID);
         }
 
         //HW

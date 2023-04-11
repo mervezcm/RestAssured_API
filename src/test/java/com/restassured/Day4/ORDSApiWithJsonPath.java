@@ -1,6 +1,7 @@
 package com.restassured.Day4;
 
-import com.cydeo.utilities.*;
+
+import com.restassured.utilities.HRTestBase;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +16,7 @@ public class ORDSApiWithJsonPath extends HRTestBase {
 
     @DisplayName("GET request to Countries")
     @Test
-    public void test1(){
+    public void test1() {
 
         Response response = get("/countries");
 
@@ -39,13 +40,13 @@ public class ORDSApiWithJsonPath extends HRTestBase {
 
     @DisplayName("GET requesto /employees with query param")
     @Test
-    public void test2(){
+    public void test2() {
         //we added limit query param to get 107 employees
         Response response = given().queryParam("limit", 107)
                 .when().get("/employees");
 
         JsonPath jsonPath = response.jsonPath();
-response.prettyPrint();
+        response.prettyPrint();
         //get me all email of employees who is working as IT_PROG
         List<String> employeeITProgs = jsonPath.getList("items.findAll {it.job_id==\"IT_PROG\"}.email");
         System.out.println(employeeITProgs);
