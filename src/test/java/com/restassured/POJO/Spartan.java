@@ -1,12 +1,10 @@
 package com.restassured.POJO;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import com.fasterxml.jackson.annotation.*;
-        import lombok.*;
 
 @Getter
 @Setter
@@ -14,12 +12,12 @@ import com.fasterxml.jackson.annotation.*;
 
 @JsonIgnoreProperties(value = "id",allowSetters = true)
 public class Spartan {
-    //getter setter
-    //toString
-    private int id;
-    private String name;
-    private String gender;
-    private long phone;
+        //getter setter
+        //toString
+        private int id;
+        private String name;
+        private String gender;
+        private long phone;
 
 
 }

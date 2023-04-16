@@ -50,7 +50,7 @@ public class SpartanPojoGetRequestTest extends SpartanTestBase {
     @DisplayName("Get one spartan from search endpoint result and use POJO")
     @Test
     public void spartanSearchWithPojo(){
-        ///spartans/search?nameContains=a&gender=Male
+        ///spartan  s/search?nameContains=a&gender=Male
         // send get request to above endpoint and save first object with type Spartan POJO
         JsonPath jsonPath = given().accept(ContentType.JSON)
                            .and().queryParams("nameContains", "a",
